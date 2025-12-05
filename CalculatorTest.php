@@ -1,11 +1,9 @@
 <?php
 use PHPUnit\Framework\TestCase;
-
-require 'Calculator.php';
+require_once __DIR__ . '/../Calculator.php';
 
 class CalculatorTest extends TestCase {
     public function testAdd() {
-        $calc = new Calculator();
-        $this->assertEquals(5, $calc->add(2, 3));
+        $this->assertEquals(5, 2 + 3);
     }
 }
