@@ -2,24 +2,23 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repository') {
+        stage('Prepare Repository') {
             steps {
-                // Mengambil kode dari GitHub repository kamu
-                git branch: 'master', url: 'https://github.com/tiaraapriliaefendi/Tiara_Jenkins.git'
+                echo 'Using local repository...'
             }
         }
 
         stage('Run PHP Script') {
             steps {
-                // Menjalankan script PHP utama
-                powershell 'php "index (1).php"'
+                echo 'Running PHP script...'
+                powershell 'php index.php'
             }
         }
 
-        stage('Run Unit Tests') {
+        stage('Run PHPUnit Tests') {
             steps {
-                // Menjalankan unit test menggunakan PHPUnit PHAR tanpa memuat php.ini (menghilangkan warning curl)
-                powershell 'php -n phpunit.phar CalculatorTest.php'
+                echo 'Running PHPUnit tests...'
+                powershell 'php phpunit.phar tests/CalculatorTest.php'
             }
         }
     }
